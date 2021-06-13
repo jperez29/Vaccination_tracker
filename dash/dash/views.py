@@ -11,12 +11,6 @@ def index(request):
     return render(request, 'base.html')
 
 def vac_table(request):
-    json_records = df.to_json(orient="split")
-    data = []
-    data = json.loads(json_records)
-    context = {'d': data}
-    print(type(context['d']['data']))
-  
-    # return render(request, 'table_1.html', context)
-    # data = df.to_json(orient="split")
-    return HttpResponse(context['d']['data'])
+    return HttpResponse(df.to_html())
+
+

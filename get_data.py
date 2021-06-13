@@ -12,7 +12,7 @@ def get_vac_data(): # Split this into get_stroke_data and parse_stroke_data
     api.authenticate()
     for link in links:
         api.dataset_download_files(link, unzip=True, quiet=False)
-    vacc = pd.read_csv("us_vaccinations.csv")
+    vacc = pd.read_csv("us_vaccinations.csv", sep=';')
     
     start = datetime.datetime.now()
     while True:
@@ -20,15 +20,14 @@ def get_vac_data(): # Split this into get_stroke_data and parse_stroke_data
             api.authenticate()
             for link in links:
                 api.dataset_download_files(link, unzip=True, quiet=False)
-            vacc = pd.read_csv("us_vaccinations.csv")
+            vacc = pd.read_csv("us_vaccinations.csv", sep=';')
 
         yield vacc
 
 def creating_db():  
     dataframes = get_vac_data()
     vacc = next(dataframes)
-    print(vacc)
-    moving_vac_to_db = vacc.to_sql('vacc', con=engine, if_exists='append')
+    moving_vac_to_db = vacc.to_sql('vacc_2', con=engine, if_exists='append')
 
 def check_db(table_name):
     df= pd.read_sql_table(table_name, con=engine)
