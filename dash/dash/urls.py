@@ -19,5 +19,6 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('dash/', views.vac_table, name='index'),
+    path('dash/', views.vac_table, name='dash'),
+    path('api/', views.vac_api, name='api'),
 ]

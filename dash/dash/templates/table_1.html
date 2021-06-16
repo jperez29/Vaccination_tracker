@@ -4,12 +4,31 @@
 <div class="container">
     <h2 class="text-center"><u>Vaccinations Table</u></h2><br>            
     <table class="table table-dark table-striped">
+        <thead>
+            <tr>
+              <th>Date (Day.Month.Year)</th>
+              <th>Location (USA State)</th>
+              <th>Total Vaccinations</th>
+              <th>Total Distributed</th>
+              <th>People Vaccinated</th>
+              <th>Total Vaccinations per Hundred</th>
+              <th>Daily Vaccinations</th>
+              <th>People fully Vaccinated</th>
+            </tr>
+        </thead>
         <tbody>
             <!-- jinja2 Technique -->
             {% if d %}
             {% for i in d %}
             <tr>
-                <td>{{ i }}</td>
+                <td>{{ i.date }}</td>
+                <td>{{ i.location }}</td>
+                <td>{{ i.total_vaccinations }}</td>
+                <td>{{ i.total_distributed }}</td>
+                <td>{{ i.people_vaccinated }}</td>
+                <td>{{ i.total_vaccinations_per_hundred }}</td>
+                <td>{{ i.daily_vaccinations }}</td>
+                <td>{{ i.people_fully_vaccinated }}</td>
             </tr>
             {% endfor %}
             {% endif %}
@@ -17,3 +36,5 @@
     </table>
 </body>
 {% endblock %}
+
+<!-- {'index': 0, 'date': '12.01.2021', 'location': 'Alabama', 'total_vaccinations': 78134.0, 'total_distributed': 377025.0, 'people_vaccinated': 70861.0, 'people_fully_vaccinated_per_hundred': 0.15, 'total_vaccinations_per_hundred': 21551.0, 'people_fully_vaccinated': 7270.0, 'people_vaccinated_per_hundred': 16438.0, 'distributed_per_hundred': 25385.0, 'daily_vaccinations_raw': None, 'daily_vaccinations': None, 'daily_vaccinations_per_million': None, 'share_doses_used': 0.207} -->

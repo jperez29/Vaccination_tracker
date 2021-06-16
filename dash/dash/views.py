@@ -11,6 +11,14 @@ def index(request):
     return render(request, 'base.html')
 
 def vac_table(request):
-    return HttpResponse(df.to_html())
+    json_records = df.iloc[:125].reset_index().to_json(orient ='records')
+    data = []
+    data = json.loads(json_records)
+    context = {'d': data}
+    return render(request, 'table_1.html', context)
+
+def vac_api(request):
+    json_records = df.reset_index().to_json(orient ='records')
+    return HttpResponse(json_records)
 
 
