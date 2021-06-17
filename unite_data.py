@@ -22,10 +22,9 @@ def final_totals():
     totals = pop_table()
     final = pd.merge(totals, tot_vacc, on="location")
     final['doses_needed'] = final['state_population'] * 2
-    final['Percentage (daily_vacc/pop)'] = final['daily_vaccinations'] / final['doses_needed'] * 100
-    final['Percentage (daily_vacc/pop)'] = final['Percentage (daily_vacc/pop)'].astype(int)
+    final['perc_daily_vacc_pop'] = final['daily_vaccinations'] / final['doses_needed'] * 100
+    final['perc_daily_vacc_pop'] = final['perc_daily_vacc_pop'].astype(int)
     return final
-
 
 def creating_db():
     totals_table = final_totals()
