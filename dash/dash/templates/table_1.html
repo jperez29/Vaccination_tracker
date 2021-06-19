@@ -1,50 +1,93 @@
 {% extends 'base.html' %}
 {% block content %}
+<!-- Tabs navs -->
+<ul class="nav nav-tabs mb-3" id="ex1" role="tablist">
+    <li class="nav-item" role="presentation">
+      <a
+        class="nav-link active"
+        id="ex1-tab-1"
+        data-mdb-toggle="tab"
+        href="#ex1-tabs-1"
+        role="tab"
+        aria-controls="ex1-tabs-1"
+        aria-selected="true"
+        >Tab 1</a
+      >
+    </li>
+    <li class="nav-item" role="presentation">
+      <a
+        class="nav-link"
+        id="ex1-tab-2"
+        data-mdb-toggle="tab"
+        href="#ex1-tabs-2"
+        role="tab"
+        aria-controls="ex1-tabs-2"
+        aria-selected="false"
+        >Tab 2</a
+      >
+    </li>
+    <li class="nav-item" role="presentation">
+      <a
+        class="nav-link"
+        id="ex1-tab-3"
+        data-mdb-toggle="tab"
+        href="#ex1-tabs-3"
+        role="tab"
+        aria-controls="ex1-tabs-3"
+        aria-selected="false"
+        >Tab 3</a
+      >
+    </li>
+  </ul>
+  <!-- Tabs navs -->
+  
+  <!-- Tabs content -->
+  <div class="tab-content" id="ex1-content">
+    <div
+      class="tab-pane fade show active"
+      id="ex1-tabs-1"
+      role="tabpanel"
+      aria-labelledby="ex1-tab-1"
+    >
+      Tab 1 content
+    </div>
+    <div class="tab-pane fade" id="ex1-tabs-2" role="tabpanel" aria-labelledby="ex1-tab-2">
+      Tab 2 content
+    </div>
+    <div class="tab-pane fade" id="ex1-tabs-3" role="tabpanel" aria-labelledby="ex1-tab-3">
+      Tab 3 content
+    </div>
+  </div>
+  <!-- Tabs content -->
 
-<body>
 <div class="container">
     <h2 class="text-center"><u>Vaccinations Table</u></h2><br>            
     <table class="table table-dark table-striped">
-        <!-- <thead>
-            <th>{{ "Index" }}</th>
-            <th>{{ "Host Id" }}</th>
-            <th>{{ "Host Response Time" }}</th>
-            <th>{{ "Host Response Rate" }}</th>
-            <th>{{ "Is Host a Superhost?" }}</th>
-            <th>{{ "Has Host Profile Picture" }}</th>
-            <th>{{ "Neighbourhood" }}</th>
-            <th>{{ "Latitude"}}</th>
-            <th>{{ "Longitude" }}</th>
-            <th>{{ "Is Location Exact?" }}</th>
-            <th>{{ "Property Type" }}</th>
-            <th>{{ "Room Type" }}</th>
-            <th>{{ "Accommodates" }}</th>
-            <th>{{ "Bathrooms" }}</th>
-            <th>{{ "Bedrooms" }}</th>
-            <th>{{ "Number of Beds" }}</th>
-            <th>{{ "Bed type" }}</th>
-            <th>{{ "Amenities" }}</th>
-            <th>{{ "Square Feet" }}</th>
-            <th>{{ "Price" }}</th>
-            <th>{{ "Number of Guests included?" }}</th>
-            <th>{{ "Minimun Nights" }}</th>
-            <th>{{ "Maximun Nights" }}</th>
-            <th>{{ "Availability updated" }}</th>
-            <th>{{ "Montly Availability" }}</th>
-            <th>{{ "Number of Reviews" }}</th>
-            <th>{{ "Review Rating" }}</th>
-            <th>{{ "Can it be Instantly Bookable" }}</th>
-            <th>{{ "Business Travel Ready" }}</th>
-            <th>{{ "Cancellation Policy" }}</th>
-            <th>{{ "Require Guess profile Picture" }}</th>
-            <th>{{ "Monthly Reviews" }}</th>
-        </thead> -->
+        <thead>
+            <tr>
+              <th>Date (Day.Month.Year)</th>
+              <th>Location (USA State)</th>
+              <th>Total Vaccinations</th>
+              <th>Total Distributed</th>
+              <th>People Vaccinated</th>
+              <th>Total Vaccinations per Hundred</th>
+              <th>Daily Vaccinations</th>
+              <th>People fully Vaccinated</th>
+            </tr>
+        </thead>
         <tbody>
             <!-- jinja2 Technique -->
             {% if d %}
             {% for i in d %}
             <tr>
-                <td>{{ i }}</td>
+                <td>{{ i.date }}</td>
+                <td>{{ i.location }}</td>
+                <td>{{ i.total_vaccinations }}</td>
+                <td>{{ i.total_distributed }}</td>
+                <td>{{ i.people_vaccinated }}</td>
+                <td>{{ i.total_vaccinations_per_hundred }}</td>
+                <td>{{ i.daily_vaccinations }}</td>
+                <td>{{ i.people_fully_vaccinated }}</td>
             </tr>
             {% endfor %}
             {% endif %}
@@ -52,5 +95,3 @@
     </table>
 </body>
 {% endblock %}
-
-</html>

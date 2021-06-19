@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <h2 class="text-center"><u>State Totals Table</u></h2><br>            
+    <table class="table table-dark table-striped">
+        <thead>
+            <tr>
+              <th>State</th>
+              <th>Latitude</th>
+              <th>Longitude</th>
+              <th>Location</th>
+              <th>State Population</th>
+              <th>Daily Vaccinations</th>
+              <th>Amount of Doses Needed</th>
+              <th>Percentage of Total Pop Vaccinated</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- jinja2 Technique -->
+            {% if d %}
+            {% for i in d %}
+            <tr>
+                <td>{{ i.state }}</td>
+                <td>{{ i.latitude }}</td>
+                <td>{{ i.longitude }}</td>
+                <td>{{ i.location }}</td>
+                <td>{{ i.state_population }}</td>
+                <td>{{ i.daily_vaccinations }}</td>
+                <td>{{ i.doses_needed }}</td>
+                <td>{{ i.perc_daily_vacc_pop }}</td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+</body>
+{% endblock %}
