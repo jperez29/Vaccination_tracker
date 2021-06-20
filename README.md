@@ -17,7 +17,7 @@ The following dashboard shows most recent information on the progress of vaccina
 # Kaggle API
 ## API credentials
 
-To use the Kaggle API, sign up for a Kaggle account at https://www.kaggle.com. Then go to the 'Account' tab of your user profile (`https://www.kaggle.com/<username>/account`) and select 'Create API Token'. This will trigger the download of `kaggle.json`, a file containing your API credentials. Place this file in the location `~/.kaggle/kaggle.json` (on Windows in the location `C:\Users\<Windows-username>\.kaggle\kaggle.json` - you can check the exact location, sans drive, with `echo %HOMEPATH%`). You can define a shell environment variable `KAGGLE_CONFIG_DIR` to change this location to `$KAGGLE_CONFIG_DIR/kaggle.json` (on Windows it will be `%KAGGLE_CONFIG_DIR%\kaggle.json`).
+This app uses information from the Kaggle API. To use the Kaggle API, sign up for a Kaggle account at https://www.kaggle.com. Then go to the 'Account' tab of your user profile (`https://www.kaggle.com/<username>/account`) and select 'Create API Token'. This will trigger the download of `kaggle.json`, a file containing your API credentials. Place this file in the location `~/.kaggle/kaggle.json` (on Windows in the location `C:\Users\<Windows-username>\.kaggle\kaggle.json` - you can check the exact location, sans drive, with `echo %HOMEPATH%`). You can define a shell environment variable `KAGGLE_CONFIG_DIR` to change this location to `$KAGGLE_CONFIG_DIR/kaggle.json` (on Windows it will be `%KAGGLE_CONFIG_DIR%\kaggle.json`).
 
 For your security, ensure that other users of your computer do not have read access to your credentials. On Unix-based systems you can do this with the following command: 
 
@@ -35,21 +35,35 @@ For example, if the file had the variable "proxy" you would export `KAGGLE_PROXY
 and it would be discovered by the client.
 
 # Installation
+## Setting up Environment
 
- 1. cd to the directory where requirements.txt is located.
- 2. activate your virtualenv
- 3. run the following code in your shell to install all the libraries necessary for the application.  
+1. cd to the directory where requirements.txt is located.
+2. activate your virtualenv
+3. run the following code in your shell to install all the libraries necessary for the application.  
  
 ```python
  pip install -r requirements.txt
  ```
 
-To see the dashbaord, run the following code in your shell:
+## Setting up Database
 
-1. Change directories to the inner main dash application
+1. After setting up the Kaggle API credentials. Run the python script to create pull data, clean data and create database.
+
+ ```python
+python unite_data.py
+ ```
+
+## Run the Django Application
+
+To see the dashbaord, run the following code in your shell:
+ ~/vaccination_tracker/dash
+
+1. Change directories to the dash folder. Right outside of the dash main application. 
  ```python
 cd dash
  ```
+
+The path will look as follows: `~/vaccination_tracker/dash`
 
 2. Run migrations
  ```python
