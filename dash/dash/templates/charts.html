@@ -1,0 +1,14 @@
+<!-- mysite/templates/index.html -->
+
+{% extends "base.html" %}
+
+{% block title %}Chart{% endblock %}
+
+{% block content %}
+    {{df | safe}}
+
+    {{ div | safe }}
+
+    {{ script | safe }}
+
+{% endblock %}

@@ -22,4 +22,5 @@ urlpatterns = [
     path('vacc/', views.vac_table, name='vacc'),
     path('total/', views.total_table, name='total'),
     path('api/', views.vac_api, name='api'),
+    path('chartpath/', views.chartpath, name='charts'),
 ]
