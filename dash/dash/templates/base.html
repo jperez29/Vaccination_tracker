@@ -6,7 +6,6 @@
     <script src="https://cdn.bokeh.org/bokeh/release/bokeh-2.3.2.min.js" integrity="sha384-XypntL49z55iwGVUW4qsEu83zKL3XEcz0MjuGOQ9SlaaQ68X/g+k1FcioZi7oQAc" crossorigin="anonymous" ></script>
     <script src="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.3.2.min.js" integrity="sha384-TX0gSQTdXTTeScqxj6PVQxTiRW8DOoGVwinyi1D3kxv7wuxQ02XkOxv0xwiypcAH" crossorigin="anonymous"></script>
     <script src="https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.3.2.min.js" integrity="sha384-bEsM86IHGDTLCS0Zod8a8WM6Y4+lafAL/eSiyQcuPzinmWNgNO2/olUF0Z2Dkn5i" crossorigin="anonymous"></script>
-    <title>{% block title %}{% endblock %}</title>
     <link href="{% static 'css/base.css' %}" rel="stylesheet">
 
     <meta charset="utf-8">
@@ -18,15 +17,7 @@
   
 </head>
 
-<body>
-    <!-- <div class="nav">
-        <ul>
-            <li><a href="/CO2">About CO2 Emissions</a></li>
-            <li><a href="/api">Api</a></li>
-            <li><a href="/EmissionsTable">Emissions Table</a></li>
-            <li><a href="/PopulationTable">Population Table</a></li>
-        </ul>
-    </div> -->
+<body style="background-color: AliceBlue;">
     <div id="content">
         {% block content %}
         {% endblock %}

@@ -22,88 +22,85 @@
 <div class="tab-content" id="ex1-content">
   <div class="tab-pane fade show active" id="ex1-tabs-1" role="tabpanel" aria-labelledby="ex1-tab-1">
     <div class="container">
-    <div class="row">
-      <div class="column">
-        <p>Hello</p>
-        <div class='row'></div>
-        {{df | safe}}
+      <div class='row'>
+        <b><p>How many people have been vaccinated in each state? This map shows the percentage of each state’s percentage of people who are fully vaccinated. If you hover over each state, you will be able to see the states's name, percentage and the state's coordinates</p></b>
+          {{ div | safe }}
+          {{ script | safe }}
 
-        {{ div | safe }}
-    
-        {{ script | safe }}
-        <!-- {{ div_map | safe }}                   
+          <b><p>How many people have been vaccinated in each state? This map shows the percentage of each state’s percentage of people who are fully vaccinated. If you hover over each state, you will be able to see the states's name, percentage and the state's coordinates</p></b>
 
-        {{ script_map | safe }} -->
-      </div>
-      <div class="column">
-        <!-- {{ div_line | safe }}                   
+          {{ div_line | safe }}
+          {{ script_line | safe }}
 
-        {{ script_line | safe }} -->
-
-      </div>
-    </div>         
+    </div> 
     </div>
   </div>
   <div class="tab-pane" id="ex1-tabs-2" role="tabpanel" aria-labelledby="ex1-tab-2">
-    <!-- <p>Tab 2 content</p> -->
+    <div class="container">
+      {{ div_bar | safe }}
 
-    {{ div_bar | safe }}
-
-    {{ script_bar | safe }}
+      {{ script_bar | safe }}
+    </div>
+  
   </div>
   <div class="tab-pane" id="ex1-tabs-3" role="tabpanel" aria-labelledby="ex1-tab-3">
-    <h2 class="text-center"><u>Vaccinations Totals Per State</u></h2><br>
-    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search State's Name. Ex: 'New York State'" style="width:500px;margin-left:80px;">
-    <br></br>
-        <table id="myTable" class="table table-dark table-striped" style="width:500px; border: 1px solid black;margin-left:80px;margin-right:auto;">
-          <thead>
-            <tr>
-              <th>Rank</th>
-              <th>State Abbreviations</th>
-              <th>Location (USA State)</th>
-              <th>State Pupulation</th>
-              <th>Daily Vaccinations</th>
-              <th>Doses Needed</th>
-              <th>Total Vaccinations Percentage</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- jinja2 Technique -->
-            {% if d %}
-            {% for i in d %}
-            <tr>
-              <td>{{ i.Rank }}</td>
-              <td>{{ i.state }}</td>
-              <td>{{ i.location }}</td>
-              <td>{{ i.state_population }}</td>
-              <td>{{ i.daily_vaccinations }}</td>
-              <td>{{ i.doses_needed }}</td>
-              <td>{{ i.perc_daily_vacc_pop }}</td>
-            </tr>
-            {% endfor %}
-            {% endif %}
-          </tbody>
-        </table>
-      <script>
-        function myFunction() {
-          var input, filter, table, tr, td, i, txtValue;
-          input = document.getElementById("myInput");
-          filter = input.value.toUpperCase();
-          table = document.getElementById("myTable");
-          tr = table.getElementsByTagName("tr");
-          for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[2];
-            if (td) {
-              txtValue = td.textContent || td.innerText;
-              if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                tr[i].style.display = "";
-              } else {
-                tr[i].style.display = "none";
-              }
-            }       
+    <div class="container">
+    <!-- <div class='row'>
+      <div class='column' style="width:500px;"> -->
+      <h2 class="text-center"><u>Vaccinations Totals Per State</u></h2><br>
+      <b><p style="width:70%;margin-left:100px;">This Table shows the percentage of each state’s percentage of people who are fully vaccinated. If you hover over each state, you will be able to see the states's name, percentage and the state's coordinates</p></b>
+      <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search State's Name. Ex: 'New York State'" style="width:500px;margin-left:100px;">
+      <br></br>
+          <table id="myTable" class="table table-dark table-striped" style="width:500px; border: 1px solid black;margin-left:100px;">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>State Abbreviations</th>
+                <th>Location (USA State)</th>
+                <th>State Pupulation</th>
+                <th>Daily Vaccinations</th>
+                <th>Doses Needed</th>
+                <th>Total Vaccinations Percentage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- jinja2 Technique -->
+              {% if d %}
+              {% for i in d %}
+              <tr>
+                <td>{{ i.Rank }}</td>
+                <td>{{ i.state }}</td>
+                <td>{{ i.location }}</td>
+                <td>{{ i.state_population }}</td>
+                <td>{{ i.daily_vaccinations }}</td>
+                <td>{{ i.doses_needed }}</td>
+                <td>{{ i.perc_daily_vacc_pop }}</td>
+              </tr>
+              {% endfor %}
+              {% endif %}
+            </tbody>
+          </table>
+        <script>
+          function myFunction() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+              td = tr[i].getElementsByTagName("td")[2];
+              if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                  tr[i].style.display = "";
+                } else {
+                  tr[i].style.display = "none";
+                }
+              }       
+            }
           }
-        }
-        </script>
+          </script>
+  </div>
   </div>
 </div>
 <!-- Tabs content -->

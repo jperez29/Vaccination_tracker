@@ -4,16 +4,19 @@ import functools
 from bokeh.io import push_notebook, output_notebook 
 from bokeh.plotting import figure,show
 from bokeh.embed import components
-from bokeh.models import ColumnDataSource, HoverTool,Legend
+from bokeh.models import ColumnDataSource, Legend
 from bokeh.palettes import YlGnBu9 as YlGnBu
 from bokeh.models import LogColorMapper
 from bokeh.sampledata.us_states import data as us_states
 from bokeh.models import LinearColorMapper
 from bokeh.models import ColorBar
 from .read_data import create_connect,read_vacc, read_total
+from bokeh.io import curdoc
 
-@functools.lru_cache(maxsize=None)
-def state_map():  
+
+# @functools.lru_cache(maxsize=None)
+def state_map(): 
+    curdoc().clear() 
     total = read_total()
     us_states_df = pd.DataFrame(us_states).T
     us_states_df = us_states_df.rename(columns={"name": "location"})
@@ -30,7 +33,7 @@ def state_map():
     us_states_datasource["StateCodes"] = us_states_df.state.values.tolist()
     us_states_datasource["PercVacc"] = us_states_df.perc_daily_vacc_pop.values.tolist()
     
-    fig = figure(plot_width=1400, plot_height=800,
+    fig = figure(plot_width=1200, plot_height=700,
                  title="United States Percentage of total Vaccinations Per State Choropleth Map",
                  x_axis_location=None, y_axis_location=None,
                  tooltips=[
@@ -46,8 +49,6 @@ def state_map():
     fig.add_layout(color_bar,'left')
 
     return fig
-    
-state_map()
 
 if (__name__ == "__main__"):
     state_map()

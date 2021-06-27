@@ -6,6 +6,7 @@ from .map import state_map
 from .line_chart import line_chart_1, line_chart_2
 from bokeh.embed import components
 from bokeh.layouts import row,column, gridplot
+from bokeh.io import curdoc
 import pandas as pd
 import numpy as np
 import json
@@ -31,14 +32,18 @@ perc_vacc = line_chart_2(state)
 
 
 def vac_table(request):
-    c = column(children = [vacc_map, num_vacc,perc_vacc], sizing_mode = 'fixed')
-    script_line, div_line = components(c)
+    line_charts = row(num_vacc,perc_vacc)
 
+    # c = column(children = [vacc_map, line_charts], sizing_mode = 'fixed')
+    script,div = components(vacc_map)
+    script_line, div_line = components(line_charts)
+    
     bar_row = row(top,bottom)
     script_bar, div_bar = components(bar_row)    
     json_records = df2.to_json(orient='records')
     data = json.loads(json_records)
-    context = {'d': data,'script': script_line, 'div': div_line, 'script_bar':script_bar, 'div_bar':div_bar}
+    context = {'d': data,'script_line': script_line, 'div_line': div_line,'script_bar':script_bar, 'div_bar':div_bar, 'script':script, 'div':div}
+
     return render(request, 'table_1.html', context)
 
 
