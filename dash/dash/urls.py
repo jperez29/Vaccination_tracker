@@ -18,9 +18,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('vacc/', views.vac_table, name='vacc'),
-    path('total/', views.total_table, name='total'),
+    path('', views.vac_table, name='vacc'),
     path('api/', views.vac_api, name='api'),
-    path('chartpath/', views.chartpath, name='charts'),
 ]
