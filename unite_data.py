@@ -32,13 +32,7 @@ def creating_db():
     moving_vac_to_db = vacc_table.to_sql('vacc', con=engine, if_exists='append')
     moving_totals_to_db = totals_table.to_sql('total', con=engine, if_exists='append')
 
-# def check_db(table_name):
-#     df= pd.read_sql_table(table_name, con=engine)
-#     while True:
-#         yield df
-
 if (__name__ == "__main__"):
     final_totals()
     creating_db()
-    #  check_db(table_name="vacc")
 
