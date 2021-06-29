@@ -5,15 +5,15 @@
 <ul class="nav nav-tabs mb-3" id="ex1" role="tablist">
   <li class="nav-item" role="presentation">
     <a class="nav-link active" id="ex1-tab-1" data-toggle="tab" href="#ex1-tabs-1" role="tab"
-      aria-controls="ex1-tabs-1" aria-selected="true">Tab 1</a>
+      aria-controls="ex1-tabs-1" aria-selected="true">Introduction</a>
   </li>
   <li class="nav-item" role="presentation">
     <a class="nav-link" id="ex1-tab-2" data-toggle="tab" href="#ex1-tabs-2" role="tab" aria-controls="ex1-tabs-2"
-      aria-selected="false">Tab 2</a>
+      aria-selected="false">Overview</a>
   </li>
   <li class="nav-item" role="presentation">
     <a class="nav-link" id="ex1-tab-3" data-toggle="tab" href="#ex1-tabs-3" role="tab" aria-controls="ex1-tabs-3"
-      aria-selected="false">Tab 3</a>
+      aria-selected="false">Table</a>
   </li>
 </ul>
 <!-- Tabs navs -->
@@ -24,22 +24,24 @@
     <div class="container">
       <div class='row'>
         <b><p>How many people have been vaccinated in each state? This map shows each state’s percentage of people who have been fully vaccinated. If you hover over each state, you will be able to see the states's name, percentage of fully vaccinated people and the state's coordinates.</p></b>
-          {{ div | safe }}
-          {{ script | safe }}
+          {{ div_map | safe }}
+          <!-- {{ script | safe }} -->
 
           <b><p>The following 2 line charts represent the state's data for the past 7 days on total vaccinations and percentage of fully vaccinated people respectively.</p></b>
 
           {{ div_line | safe }}
-          {{ script_line | safe }}
+          <!-- {{ script_line | safe }} -->
 
     </div> 
     </div>
   </div>
   <div class="tab-pane" id="ex1-tabs-2" role="tabpanel" aria-labelledby="ex1-tab-2">
-    <div class="container">
+    <h2 class="text-center"><u>Overview</u></h2><br>
+    <div class="container" style="width:500px; border: 1px solid black;margin-left:200px;margin-top:100px;">
+     
       {{ div_bar | safe }}
 
-      {{ script_bar | safe }}
+      <!-- {{ script_bar | safe }} -->
     </div>
   
   </div>
@@ -105,6 +107,7 @@
 </div>
 <!-- Tabs content -->
 
+{{ script | safe }}
 
 </body>
 {% endblock %}

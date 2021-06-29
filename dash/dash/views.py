@@ -3,7 +3,7 @@ from django.shortcuts import HttpResponse
 from .read_data import create_connect, read_vacc, read_total
 from .bar_charts import top_states, bottom_states
 from .map import state_map
-from .line_chart import line_chart_1, line_chart_2
+from .line_chart import line_chart_1, line_chart_2,scatter_plot
 from bokeh.embed import components
 from bokeh.layouts import row,column, gridplot
 from bokeh.io import curdoc
@@ -16,15 +16,16 @@ df2 = read_total()
 df2 = df2.sort_values(by='perc_daily_vacc_pop',ascending=False)
 index = [i for i in range(1,len(df2)+1)]
 df2['Rank'] = index
-state = 'Alabama'
+# state = 'Alabama'
 data = []
 vacc_map = state_map()
 top = top_states()
 bottom = bottom_states()
-
-num_vacc = line_chart_1(state)
-perc_vacc = line_chart_2(state)
-
+al_num_vacc = line_chart_1(state = 'Alabama')
+al_perc_vacc = line_chart_2(state = 'Alabama')
+ver_num_vacc = line_chart_1(state = 'Vermont')
+ver_perc_vacc = line_chart_2(state = 'Vermont')
+scatter = scatter_plot()
 
 # def index(request):
 #     data = {'data': 'Hello World'}
@@ -32,17 +33,12 @@ perc_vacc = line_chart_2(state)
 
 
 def vac_table(request):
-    line_charts = row(num_vacc,perc_vacc)
-
-    # c = column(children = [vacc_map, line_charts], sizing_mode = 'fixed')
-    script,div = components(vacc_map)
-    script_line, div_line = components(line_charts)
-    
-    bar_row = row(top,bottom)
-    script_bar, div_bar = components(bar_row)    
+    grid = gridplot([al_num_vacc, al_perc_vacc, ver_num_vacc, ver_perc_vacc], ncols=2)
+    bar_row = row(top,bottom,scatter)
+    script, divs = components((bar_row,vacc_map, grid))    
     json_records = df2.to_json(orient='records')
     data = json.loads(json_records)
-    context = {'d': data,'script_line': script_line, 'div_line': div_line,'script_bar':script_bar, 'div_bar':div_bar, 'script':script, 'div':div}
+    context = {'d': data,'div_line': divs[2],'script':script, 'div_bar':divs[0], 'div_map':divs[1]}
 
     return render(request, 'table_1.html', context)
 

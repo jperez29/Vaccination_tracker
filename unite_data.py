@@ -29,8 +29,8 @@ def final_totals():
 def creating_db():
     totals_table = final_totals()
     vacc_table = clean_vacc()
-    moving_vac_to_db = vacc_table.to_sql('vacc', con=engine, if_exists='append')
-    moving_totals_to_db = totals_table.to_sql('total', con=engine, if_exists='append')
+    moving_vac_to_db = vacc_table.to_sql('vacc', con=engine, if_exists='replace')
+    moving_totals_to_db = totals_table.to_sql('total', con=engine, if_exists='replace')
 
 if (__name__ == "__main__"):
     final_totals()
