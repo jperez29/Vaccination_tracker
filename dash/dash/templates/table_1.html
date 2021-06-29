@@ -23,11 +23,11 @@
   <div class="tab-pane fade show active" id="ex1-tabs-1" role="tabpanel" aria-labelledby="ex1-tab-1">
     <div class="container">
       <div class='row'>
-        <b><p>How many people have been vaccinated in each state? This map shows the percentage of each state’s percentage of people who are fully vaccinated. If you hover over each state, you will be able to see the states's name, percentage and the state's coordinates</p></b>
+        <b><p>How many people have been vaccinated in each state? This map shows each state’s percentage of people who have been fully vaccinated. If you hover over each state, you will be able to see the states's name, percentage of fully vaccinated people and the state's coordinates.</p></b>
           {{ div | safe }}
           {{ script | safe }}
 
-          <b><p>How many people have been vaccinated in each state? This map shows the percentage of each state’s percentage of people who are fully vaccinated. If you hover over each state, you will be able to see the states's name, percentage and the state's coordinates</p></b>
+          <b><p>The following 2 line charts represent the state's data for the past 7 days on total vaccinations and percentage of fully vaccinated people respectively.</p></b>
 
           {{ div_line | safe }}
           {{ script_line | safe }}
@@ -48,7 +48,7 @@
     <!-- <div class='row'>
       <div class='column' style="width:500px;"> -->
       <h2 class="text-center"><u>Vaccinations Totals Per State</u></h2><br>
-      <b><p style="width:70%;margin-left:100px;">This Table shows the percentage of each state’s percentage of people who are fully vaccinated. If you hover over each state, you will be able to see the states's name, percentage and the state's coordinates</p></b>
+      <b><p style="width:70%;margin-left:100px;">This Table shows COVID-19 Vaccinations statistics on each state - State Pupulation, Daily Vaccinations, Doses Needed, Total Vaccinations Percentage. Each state can be searched/filtered by entering the state's name.</p></b>
       <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search State's Name. Ex: 'New York State'" style="width:500px;margin-left:100px;">
       <br></br>
           <table id="myTable" class="table table-dark table-striped" style="width:500px; border: 1px solid black;margin-left:100px;">
