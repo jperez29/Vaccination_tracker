@@ -50,7 +50,8 @@ def line_chart_2(state):
 
 def scatter_plot():
     total = read_total()
-    total = total.sort_values(by='doses_needed', ascending=False)
+    total = total.sort_values(by='perc_daily_vacc_pop', ascending=False)
+    print(total)
     total['total_vaccinations_thousand']= total['doses_needed']//1000
     doses = total['total_vaccinations_thousand'].values
     percentage = total['perc_daily_vacc_pop'].values
@@ -61,7 +62,7 @@ def scatter_plot():
     p.xaxis.axis_label = 'Percentage of People Fully Vaccinated (%)'
     p.yaxis.axis_label = 'total Doses Needed (thousand)'
 
-    p.circle(percentage, doses,color=colors, fill_alpha=0.4, size=10)
+    p.circle(percentage, doses,color=colors, fill_alpha=0.6, size=10)
 
     hover = HoverTool()
     p.add_tools(hover)
