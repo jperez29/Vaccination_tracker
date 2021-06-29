@@ -17,7 +17,7 @@ The following dashboard shows most recent information on the progress of vaccina
 # Kaggle API
 ## API credentials
 
-To use the Kaggle API, sign up for a Kaggle account at https://www.kaggle.com. Then go to the 'Account' tab of your user profile (`https://www.kaggle.com/<username>/account`) and select 'Create API Token'. This will trigger the download of `kaggle.json`, a file containing your API credentials. Place this file in the location `~/.kaggle/kaggle.json` (on Windows in the location `C:\Users\<Windows-username>\.kaggle\kaggle.json` - you can check the exact location, sans drive, with `echo %HOMEPATH%`). You can define a shell environment variable `KAGGLE_CONFIG_DIR` to change this location to `$KAGGLE_CONFIG_DIR/kaggle.json` (on Windows it will be `%KAGGLE_CONFIG_DIR%\kaggle.json`).
+This app uses information from the Kaggle API. To use the Kaggle API, sign up for a Kaggle account at https://www.kaggle.com. Then go to the 'Account' tab of your user profile (`https://www.kaggle.com/<username>/account`) and select 'Create API Token'. This will trigger the download of `kaggle.json`, a file containing your API credentials. Place this file in the location `~/.kaggle/kaggle.json` (on Windows in the location `C:\Users\<Windows-username>\.kaggle\kaggle.json` - you can check the exact location, sans drive, with `echo %HOMEPATH%`). You can define a shell environment variable `KAGGLE_CONFIG_DIR` to change this location to `$KAGGLE_CONFIG_DIR/kaggle.json` (on Windows it will be `%KAGGLE_CONFIG_DIR%\kaggle.json`).
 
 For your security, ensure that other users of your computer do not have read access to your credentials. On Unix-based systems you can do this with the following command: 
 
@@ -35,21 +35,35 @@ For example, if the file had the variable "proxy" you would export `KAGGLE_PROXY
 and it would be discovered by the client.
 
 # Installation
+## Setting up Environment
 
- 1. cd to the directory where requirements.txt is located.
- 2. activate your virtualenv
- 3. run the following code in your shell to install all the libraries necessary for the application.  
+1. activate your virtual env
+2. cd to the directory where requirements.txt is located
+3. run the following code in your shell to install all the libraries necessary for the application.  
  
 ```python
  pip install -r requirements.txt
  ```
 
-To see the dashbaord, run the following code in your shell:
+## Setting up Database
 
-1. Change directories to the inner main dash application
+1. After setting up the Kaggle API credentials. Run the python script to create pull data, clean data and create database.
+
+ ```python
+python unite_data.py
+ ```
+
+## Run the Django Application
+
+To see the dashbaord, run the following code in your shell:
+ ~/vaccination_tracker/dash
+
+1. Change directories to the dash folder. Right outside of the dash main application. 
  ```python
 cd dash
  ```
+
+The path will look as follows: `~/vaccination_tracker/dash`
 
 2. Run migrations
  ```python
@@ -90,5 +104,5 @@ Tbi
 | Preview                                                                                                                                                                                                                                     | Description                                                                                                                                                                                                                                                  |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | [<img src="./img/clariza.jpg" width="1000" />](https://i.imgur.com/0OoLaa5.png)                                                                                                                                                | Clariza is an Ambitious data science fellow committed to academic excellence. Prepared to implement diverse skill sets, technical proficiencies and new perspectives to leadership personnel. Adaptable and driven with strong work ethic and ability to thrive in team-based or individually motivated settings. At her core, she is a problem solver and experimenter who’s passionate about using sociological and data driven approaches to tackling projects and building meaningful products that help people live better lives. She has worked in Medical billing, consumer and customer service and is now looking to pivot her career path towards Data Science.                                                                                    |
-| [<img src="./img/stani.jpg" width="1000" />](https://i.imgur.com/0OoLaa5.png)                                                                                                                                                | Stanislava is a life-long learner with a background in Marketing and a passion for Cybersecurity & Data. Team-focused, resourceful, and detail-oriented with a successful record of over 7 years of client-facing experience. Seeking to effectively bridge the gap between Engineering and Business Teams, along with the capability of rendering excellent technical and communications skills.|
+| [<img src="./img/stani.jpg" width="1000" />](https://i.imgur.com/0OoLaa5.png)                                                                                                                                                | Stanislava is a life-long learner with a background in Marketing and a passion for Cybersecurity & Data. Team-focused, resourceful, and detail-oriented with a successful record of over 7 years of client-facing experience. Able to effectively bridge the gap between Engineering and Business Teams, along with the capability of rendering excellent technical and communications skills.|
 | [<img src="./img/janet.jpg" width="165" />](https://s3.amazonaws.com/assets.datacamp.com/blog_assets/DataScienceEightSteps_Full.png)                    | Hi! My name is Janet Perez and I have a passion and interest in pursuing a career at the intersection of data science and biology. I am a college graduate from Binghamton University where I obtained my Bachelor's in math and biology. I am currently a data science fellow at The Knowledge House, a nonprofit organization focused on training people to pursue careers in the tech sector. I want to combine the technical skills I am developing at The Knowledge House with my background in math and the sciences to get into a career within a team where I can build professional relationships and collectively tackle biological problems that can make a difference in people’s lives.              |
