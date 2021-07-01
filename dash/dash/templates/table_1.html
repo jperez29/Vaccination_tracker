@@ -8,26 +8,29 @@
       aria-controls="ex1-tabs-1" aria-selected="true">Introduction</a>
   </li>
   <li class="nav-item" role="presentation">
-    <a class="nav-link" id="ex1-tab-2" data-toggle="tab" href="#ex1-tabs-2" role="tab" aria-controls="ex1-tabs-2"
-      aria-selected="false">Overview</a>
-  </li>
-  <li class="nav-item" role="presentation">
     <a class="nav-link" id="ex1-tab-3" data-toggle="tab" href="#ex1-tabs-3" role="tab" aria-controls="ex1-tabs-3"
       aria-selected="false">Table</a>
   </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="ex1-tab-2" data-toggle="tab" href="#ex1-tabs-2" role="tab" aria-controls="ex1-tabs-2"
+      aria-selected="false">Overview</a>
+  </li>
 </ul>
 <!-- Tabs navs -->
+
 
 <!-- Tabs content -->
 <div class="tab-content" id="ex1-content">
   <div class="tab-pane fade show active" id="ex1-tabs-1" role="tabpanel" aria-labelledby="ex1-tab-1">
     <div class="container">
-      <div class='row'>
+      <div class='row' style="margin-bottom:100px">
         <b><p>How many people have been vaccinated in each state? This map shows each state’s percentage of people who have been fully vaccinated. If you hover over each state, you will be able to see the states's name, percentage of fully vaccinated people and the state's coordinates.</p></b>
           {{ div_map | safe }}
           <!-- {{ script | safe }} -->
 
           <b><p>The following 2 line charts represent the state's data for the past 7 days on total vaccinations and percentage of fully vaccinated people respectively.</p></b>
+
+          <select name="" id="stateListSelector" onchange="selectChange"></select>
 
           {{ div_line | safe }}
           <!-- {{ script_line | safe }} -->
@@ -35,23 +38,13 @@
     </div> 
     </div>
   </div>
-  <div class="tab-pane" id="ex1-tabs-2" role="tabpanel" aria-labelledby="ex1-tab-2">
-    <h2 class="text-center"><u>Overview</u></h2><br>
-    <div class="container" style="width:500px; border: 1px solid black;margin-left:200px;margin-top:100px;">
-     
-      {{ div_bar | safe }}
-
-      <!-- {{ script_bar | safe }} -->
-    </div>
-  
-  </div>
   <div class="tab-pane" id="ex1-tabs-3" role="tabpanel" aria-labelledby="ex1-tab-3">
-    <div class="container">
+    <div class="container" style='margin-bottom:100px'>
     <!-- <div class='row'>
       <div class='column' style="width:500px;"> -->
       <h2 class="text-center"><u>Vaccinations Totals Per State</u></h2><br>
       <b><p style="width:70%;margin-left:100px;">This Table shows COVID-19 Vaccinations statistics on each state - State Pupulation, Daily Vaccinations, Doses Needed, Total Vaccinations Percentage. Each state can be searched/filtered by entering the state's name.</p></b>
-      <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search State's Name. Ex: 'New York State'" style="width:500px;margin-left:100px;">
+      <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search State's Name OR State Abbreviation. Ex: 'New York State or NY'" style="width:600px;margin-left:100px;">
       <br></br>
           <table id="myTable" class="table table-dark table-striped" style="width:500px; border: 1px solid black;margin-left:100px;">
             <thead>
@@ -90,10 +83,11 @@
             table = document.getElementById("myTable");
             tr = table.getElementsByTagName("tr");
             for (i = 0; i < tr.length; i++) {
-              td = tr[i].getElementsByTagName("td")[2];
-              if (td) {
-                txtValue = td.textContent || td.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              td = tr[i].getElementsByTagName("td");
+              if (td[2] || td[1]) {
+                txtValue1 = td[1].textContent || td[1].innerText;
+                txtValue2 = td[2].textContent || td[2].innerText;
+                if ((txtValue1.toUpperCase().indexOf(filter) > -1) || (txtValue2.toUpperCase().indexOf(filter) > -1)) {
                   tr[i].style.display = "";
                 } else {
                   tr[i].style.display = "none";
@@ -104,9 +98,34 @@
           </script>
   </div>
   </div>
+  <div class="tab-pane" id="ex1-tabs-2" role="tabpanel" aria-labelledby="ex1-tab-2">
+    <h2 class="text-center"><u>Overview</u></h2><br>
+    <div class="container" style="width:500px; border: 1px solid black;margin-top:100px;margin-left:300px;margin-bottom:100px">
+     
+      {{ div_bar | safe }}
+
+      <!-- {{ script_bar | safe }} -->
+    </div>
+  
+  </div>
 </div>
 <!-- Tabs content -->
+<script src="./scripts/options.js"></script>
+<script>
+  const state_lst = ['Vermont', 'Massachusetts', 'District of Columbia', 'Connecticut', 'Maine', 'Hawaii', 'Rhode Island', 'Maryland', 'Washington', 'New Hampshire', 'New Jersey', 'New Mexico', 'Oregon', 'Pennsylvania', 'New York State', 'California', 'Virginia', 'Colorado', 'Delaware', 'Minnesota', 'Illinois', 'Wisconsin', 'Florida', 'Iowa', 'Michigan', 'Puerto Rico', 'Nebraska', 'Ohio', 'South Dakota', 'Arizona', 'Nevada', 'Kentucky', 'Texas', 'Utah', 'Alaska', 'Montana', 'North Carolina', 'Kansas', 'South Carolina', 'Missouri', 'Indiana', 'Oklahoma', 'North Dakota', 'Georgia', 'Arkansas', 'West Virginia', 'Tennessee', 'Louisiana', 'Idaho', 'Wyoming', 'Alabama', 'Mississippi'].sort();
+  const stateList = document.getElementById('stateListSelector');
 
+  function selectChange(e) {
+    console.log('e.target.value', e.target.value);
+  }
+
+  for (stateId in state_lst) {
+    const newOption = document.createElement('option');
+    newOption.value = state_lst[stateId];
+    newOption.innerText = state_lst[stateId];
+    stateList.appendChild(newOption);
+  }
+</script>
 {{ script | safe }}
 
 </body>

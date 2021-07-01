@@ -1,0 +1,3 @@
+const state_lst = ['Vermont', 'Massachusetts', 'District of Columbia', 'Connecticut', 'Maine', 'Hawaii', 'Rhode Island', 'Maryland', 'Washington', 'New Hampshire', 'New Jersey', 'New Mexico', 'Oregon', 'Pennsylvania', 'New York State', 'California', 'Virginia', 'Colorado', 'Delaware', 'Minnesota', 'Illinois', 'Wisconsin', 'Florida', 'Iowa', 'Michigan', 'Puerto Rico', 'Nebraska', 'Ohio', 'South Dakota', 'Arizona', 'Nevada', 'Kentucky', 'Texas', 'Utah', 'Alaska', 'Montana', 'North Carolina', 'Kansas', 'South Carolina', 'Missouri', 'Indiana', 'Oklahoma', 'North Dakota', 'Georgia', 'Arkansas', 'West Virginia', 'Tennessee', 'Louisiana', 'Idaho', 'Wyoming', 'Alabama', 'Mississippi'];
+
+module.exports = state_lst

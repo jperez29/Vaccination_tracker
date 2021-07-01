@@ -12,9 +12,9 @@ from bokeh.io import curdoc
 # @functools.lru_cache(maxsize=None)
 def bottom_states():
     selection= 5
-    total = read_total()  
-    top_total = total[:selection].sort_values('perc_daily_vacc_pop',ascending=False)
-    source = ColumnDataSource(top_total)
+    total = read_total().sort_values('perc_daily_vacc_pop',ascending=False)  
+    bottom_total = total[-selection:]
+    source = ColumnDataSource(bottom_total)
     country_names = source.data['location'].tolist()
     colors = factor_cmap('location', palette=Greens[selection], factors=country_names)
     p = figure(y_range=country_names, title= f'The {selection} States with Lowest Pop Fully Vaccinated (%)')
@@ -29,9 +29,9 @@ def bottom_states():
 # @functools.lru_cache(maxsize=None)
 def top_states():
     selection= 5
-    total = read_total()  
-    bottom_total = total[-selection:].sort_values('perc_daily_vacc_pop',ascending=True)
-    source = ColumnDataSource(bottom_total)
+    total = read_total().sort_values('perc_daily_vacc_pop',ascending=False)   
+    top_total = total[:selection].sort_values('perc_daily_vacc_pop',ascending=True) 
+    source = ColumnDataSource(top_total)
     country_names = source.data['location'].tolist()
     colors = factor_cmap('location', palette=Magma[selection], factors=country_names)
     p = figure(y_range=country_names, title= f'The {selection} States with Highest Pop Fully Vaccinated (%)')
